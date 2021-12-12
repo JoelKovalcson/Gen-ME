@@ -1,16 +1,4 @@
 // Object property lookup tables for different 
-/*
-'Apache',
-'Boost',
-'Eclipse',
-'IBM',
-'ISC',
-'MIT',
-'SIL',
-'Unlicense',
-'WTFPL',
-'Zlib'
-*/
 const licenseLookup = {
   Apache: {
     badge: 'https://img.shields.io/badge/License-Apache_2.0-blue.svg',
