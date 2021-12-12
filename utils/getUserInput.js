@@ -155,6 +155,24 @@ const questions = {
     ]
 };
 
+const getLicense = (data) => {
+    return inquirer.prompt(questions.license).then(d => {
+        return data = {
+            ...data,
+            ...d
+        };
+    })
+}
+
+const getContact = (data) => {
+    return inquirer.prompt(questions.contact).then(d => {
+        return data = {
+            ...data,
+            ...d
+        };
+    })
+}
+
 const getContribute = (data) => {
     return inquirer.prompt(questions.contribute).then(d => {
         return data = {
