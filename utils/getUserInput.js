@@ -183,13 +183,9 @@ const getContribute = (data) => {
 }
 
 const getTestInfo = (data) => {
-	// If no instructions, create array
 	if (!data.tests) data.tests = [];
-	// Ask for step information, then if there's another one
 	return inquirer.prompt(questions.test.repeat).then(testInfo => {
-		// Add the step information to the array
 		data.tests.push(testInfo.testStep);
-		// If there is another question, repeat this process recursively
 		if (testInfo.confirmNextTest) {
 			return getTestInfo(data);
 		} else return data;

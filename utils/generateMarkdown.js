@@ -58,7 +58,7 @@ ${data.contribute}
 function renderQuestions(data) {
 	if(!(data.confirmGithub || data.confirmEmail)) return '';
 	let res = "## Questions\nIf you have any questions please send them to:";
-	if(data.confirmGithub) res += `\n* ${data.github}`;
+	if(data.confirmGithub) res += `\n* https://github.com/${data.github}/`;
 	if(data.confirmEmail) res += `\n* ${data.email}`;
 	return res;
 }
