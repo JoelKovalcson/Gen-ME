@@ -1,13 +1,31 @@
-// TODO: Include packages needed for this application
+const generateMarkdown = require('./utils/generateMarkdown.js');
+const getUserInput = require('./utils/getUserInput');
+const fs = require('fs');
 
-// TODO: Create an array of questions for user input
-const questions = [];
+const questions = [
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+];
 
-// TODO: Create a function to initialize app
-function init() {}
+const outputPath = "./out/";
 
-// Function call to initialize app
+function writeToFile(fileName, data) {
+    let md = generateMarkdown(data);
+    fs.writeFile(fileName, md, err => {
+        if(err) {
+            console.log("There was an error generating your README file.");
+        }
+        else {
+            console.log("\nREADME successfully generated.\nCheck the 'out' folder for your new README and make sure to save it before making a new one!");
+        }
+    });
+}
+
+
+function init() {
+    let data = getUserInput(questions);
+
+    // Hardcode README.md name for now
+    writeToFile(outputPath + 'README.md', data);
+}
+
 init();
