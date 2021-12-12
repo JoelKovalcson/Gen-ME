@@ -10,7 +10,7 @@ function writeToFile(fileName, data) {
         if (err) {
             console.log("There was an error generating your README file.");
         } else {
-            console.log("\nREADME successfully generated.\nCheck the 'out' folder for your new README and make sure to save it before making a new one!");
+            console.log("\nREADME successfully generated.\nCheck the 'out' folder for your new README and make sure to save it elsewhere before making a new one!");
         }
     });
 }
