@@ -2,6 +2,7 @@ const generateMarkdown = require('./utils/generateMarkdown.js');
 const getUserInput = require('./utils/getUserInput');
 const fs = require('fs');
 
+// Output file path
 const outputPath = "./out/";
 
 function writeToFile(fileName, data) {
@@ -17,10 +18,11 @@ function writeToFile(fileName, data) {
 
 
 function init() {
+	// After user input is obtained, write the new README with the data
 	getUserInput().then(data => {
-		console.log(data);
+		// Make the out directory if it doesn't exist
 		try {
-			fs.mkdirSync('./out')
+			fs.mkdirSync('./out');
 			writeToFile(outputPath + 'README.md', data);
 		} catch {
 			writeToFile(outputPath + 'README.md', data);
