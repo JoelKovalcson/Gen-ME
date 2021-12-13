@@ -1,4 +1,4 @@
-// Object property lookup tables for different 
+// Lookup table for different licensing options
 const licenseLookup = {
 	Apache: {
 		badge: 'https://img.shields.io/badge/License-Apache_2.0-blue.svg',
@@ -42,47 +42,51 @@ const licenseLookup = {
 	}
 }
 
+/*
+	The below functions are used to dynamically create markdown based on the provided data object
+*/
+
 function renderLicense(data) {
-	if(!data.confirmLicense) return '';
+	if (!data.confirmLicense) return '';
 	return `## License
 This project is licensed under the \`${data.licenseType}\` license as described [here](${licenseLookup[data.licenseType].link}).`;
 }
 
 function renderContribute(data) {
-	if(!data.confirmContribute) return '';
+	if (!data.confirmContribute) return '';
 	return `## Contributing
 ${data.contribute}
 `
 }
 
 function renderQuestions(data) {
-	if(!(data.confirmGithub || data.confirmEmail)) return '';
+	if (!(data.confirmGithub || data.confirmEmail)) return '';
 	let res = "## Questions\nIf you have any questions please send them to:";
-	if(data.confirmGithub) res += `\n* https://github.com/${data.github}/`;
-	if(data.confirmEmail) res += `\n* ${data.email}`;
+	if (data.confirmGithub) res += `\n* https://github.com/${data.github}/`;
+	if (data.confirmEmail) res += `\n* ${data.email}`;
 	return res;
 }
 
 function renderTests(data) {
-	if(!data.confirmTest) return '';
+	if (!data.confirmTest) return '';
 	let res = "## Tests";
-	for(let i = 0; i < data.tests.length; i++) {
+	for (let i = 0; i < data.tests.length; i++) {
 		res += `\n${i+1}. ${data.tests[i]}`;
 	}
 	return res;
 }
 
 function renderUsage(data) {
-	if(!data.confirmUsage) return '';
+	if (!data.confirmUsage) return '';
 	return `## Usage
 ${data.usage}
 `
 }
 
 function renderInstallation(data) {
-	if(!data.confirmInstall) return '';
+	if (!data.confirmInstall) return '';
 	let res = "## Installation";
-	for(let i = 0; i < data.instructions.length; i++) {
+	for (let i = 0; i < data.instructions.length; i++) {
 		res += `\n${i+1}. ${data.instructions[i]}`;
 	}
 	return res;
@@ -116,8 +120,9 @@ function renderLicenseBadge(data) {
 	} else return "";
 }
 
+
 function generateMarkdown(data) {
-	let res =`
+	let res = `
 ${renderLicenseBadge(data)}
 
 ${renderTitle(data)}
@@ -138,6 +143,9 @@ ${renderContribute(data)}
 
 ${renderLicense(data)}
 `
+	// Strips empty lines.
+	res = res.replace(/^\s*[\r\n]/gm, "");
+
 	return res;
 }
 

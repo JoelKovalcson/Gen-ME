@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 
+// Large object containing multiple question arrays
 const questions = {
 	// Project Title
 	title: [{
@@ -155,6 +156,11 @@ const questions = {
 	]
 };
 
+/*
+ 	The below functions use the Inquirer package, promises, and object merging
+	with the spread operator to obtain user information 
+*/
+
 const getLicense = (data) => {
 	return inquirer.prompt(questions.license).then(d => {
 		return data = {
@@ -221,13 +227,9 @@ const getUsage = (data) => {
 }
 
 const getInstructionInfo = (data) => {
-	// If no instructions, create array
 	if (!data.instructions) data.instructions = [];
-	// Ask for step information, then if there's another one
 	return inquirer.prompt(questions.installation.repeat).then(stepInfo => {
-		// Add the step information to the array
 		data.instructions.push(stepInfo.installStep);
-		// If there is another question, repeat this process recursively
 		if (stepInfo.confirmNextInstall) {
 			return getInstructionInfo(data);
 		} else return data;
